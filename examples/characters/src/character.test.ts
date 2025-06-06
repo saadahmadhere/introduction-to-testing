@@ -3,8 +3,12 @@ import { Character } from './character.js';
 import { Person } from './person.js';
 
 describe('Character', () => {
+  let singer;
+
+  beforeEach(() => {
+    singer = new Character('arijit', 'singh', 'singer');
+  });
   it('should create a character with a first name, last name, and role', () => {
-    const singer = new Character('arijit', 'singh', 'singer');
     expect(singer).toEqual({
       firstName: 'arijit',
       lastName: 'singh',
@@ -23,14 +27,12 @@ describe('Character', () => {
   });
 
   it('should allow you to increase the level', () => {
-    const singer = new Character('arijit', 'singh', 'singer');
     expect(singer.level).toBe(1);
     singer.levelUp();
     expect(singer.level).toBe(2);
   });
 
   it('should update the last modified date when leveling up', () => {
-    const singer = new Character('arijit', 'singh', 'singer');
     let prevLastModified = singer.lastModified;
     singer.levelUp();
     expect(singer.lastModified).not.toBe(prevLastModified);
