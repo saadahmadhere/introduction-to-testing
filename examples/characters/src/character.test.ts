@@ -22,7 +22,18 @@ describe('Character', () => {
     });
   });
 
-  it.todo('should allow you to increase the level', () => {});
+  it('should allow you to increase the level', () => {
+    const singer = new Character('arijit', 'singh', 'singer');
+    expect(singer.level).toBe(1);
+    singer.levelUp();
+    expect(singer.level).toBe(2);
+  });
 
-  it.todo('should update the last modified date when leveling up', () => {});
+  it('should update the last modified date when leveling up', () => {
+    const singer = new Character('arijit', 'singh', 'singer');
+    let prevLastModified = singer.lastModified;
+    singer.levelUp();
+    expect(singer.lastModified).not.toBe(prevLastModified);
+    // expect(singer.lastModified).toBeGreaterThan(prevLastModified);
+  });
 });
