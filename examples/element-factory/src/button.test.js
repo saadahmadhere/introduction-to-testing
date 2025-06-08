@@ -1,7 +1,13 @@
 import { screen, fireEvent } from '@testing-library/dom';
+import userEvent from '@testing-library/user-event';
 import { createButton } from './button.js';
+// arrange, act, assert
 
 describe('createButton', () => {
+  afterEach(() => {
+    document.body.innerHTML = '';
+  });
+
   it('should create a button element', () => {
     document.body.appendChild(createButton());
     const button = screen.getByRole('button', { name: 'Click Me' });
@@ -15,8 +21,9 @@ describe('createButton', () => {
   });
 
   it('should change the text to "Clicked!" when clicked', async () => {
+    document.body.appendChild(createButton());
     const button = screen.getByRole('button', { name: 'Click Me' });
-    fireEvent(button, new MouseEvent('click'));
+    await userEvent.click(button);
     expect(button.innerText).toBe('Clicked!');
   });
 });
