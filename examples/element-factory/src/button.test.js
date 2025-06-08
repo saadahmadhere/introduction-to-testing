@@ -17,5 +17,6 @@ describe('createButton', () => {
   it('should change the text to "Clicked!" when clicked', async () => {
     const button = screen.getByRole('button', { name: 'Click Me' });
     fireEvent(button, new MouseEvent('click'));
+    expect(button.innerText).toBe('Clicked!');
   });
 });
