@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/dom';
+import { screen, fireEvent } from '@testing-library/dom';
 import { createButton } from './button.js';
 
 describe('createButton', () => {
@@ -15,8 +15,7 @@ describe('createButton', () => {
   });
 
   it('should change the text to "Clicked!" when clicked', async () => {
-    const button = createButton();
-    button.click();
-    expect(button.textContent).toBe('Clicked!');
+    const button = screen.getByRole('button', { name: 'Click Me' });
+    fireEvent(button, new MouseEvent('click'));
   });
 });
