@@ -1,11 +1,12 @@
+import { screen } from '@testing-library/dom';
 import { createButton } from './button.js';
 
 describe('createButton', () => {
   it('should create a button element', () => {
-    const button = createButton();
+    document.body.appendChild(createButton());
+    const button = screen.getByRole('button', { name: 'Click Me' });
 
-    expect(button).toBeInstanceOf(HTMLButtonElement);
-    expect(button.tagName).toBe('BUTTON');
+    expect(button).toBeInTheDocument();
   });
 
   it('should have the text "Click Me"', () => {
