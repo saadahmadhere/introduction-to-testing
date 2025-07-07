@@ -5,16 +5,27 @@ import { Counter } from './counter';
 
 import '@testing-library/jest-dom/vitest';
 
-describe.todo('Counter ', () => {
+describe('Counter ', () => {
   beforeEach(() => {
     render(<Counter />);
   });
 
-  it('renders with an initial count of 0');
+  it('renders with an initial count of 0', () => {
+    const counter = screen.getByTestId('counter-count');
+    expect(counter).toHaveTextContent('0');
+  });
 
-  it('disables the "Decrement" and "Reset" buttons when the count is 0');
+  it('disables the "Decrement" and "Reset" buttons when the count is 0', () => {
+    const decrementButton = screen.getByRole('button', { name: /decrement/i });
+    const resetButton = screen.getByRole('button', { name: /reset/i });
+    expect(decrementButton).toBeDisabled();
+    expect(resetButton).toBeDisabled();
+  });
 
-  it.todo('displays "days" when the count is 0', () => {});
+  it('displays "days" when the count is 0', () => {
+    const unit = screen.getByTestId('counter-unit');
+    expect(unit).toHaveTextContent('days');
+  });
 
   it.todo(
     'increments the count when the "Increment" button is clicked',
