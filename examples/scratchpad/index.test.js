@@ -1,12 +1,13 @@
 import { test, expect, vi } from 'vitest';
 
-const logSpy = vi.spyOn(console, 'log');
+// const logSpy = vi.spyOn(console, 'log');
 
 test('a super simple test', () => {
-  console.log('hi there');
+  const mockFn = vi.fn();
+  mockFn('hi there');
 
-  expect(logSpy).toBeCalled();
-  expect(logSpy).toBeCalledWith('hi there');
-  expect(logSpy).toHaveBeenCalledOnce();
-  expect(logSpy).toBeCalledTimes(1);
+  expect(mockFn).toBeCalled();
+  expect(mockFn).toBeCalledWith('hi there');
+  expect(mockFn).toHaveBeenCalledOnce();
+  expect(mockFn).toBeCalledTimes(1);
 });
