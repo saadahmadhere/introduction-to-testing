@@ -1,13 +1,8 @@
 import { test, expect, vi } from 'vitest';
 
-// const logSpy = vi.spyOn(console, 'log');
+const randomSpy = vi.spyOn(Math, 'random').mockImplementation(() => 0.5); // whenever Math.random() is called, it will return 0.5
 
 test('a super simple test', () => {
-  const mockFn = vi.fn();
-  mockFn('hi there');
-
-  expect(mockFn).toBeCalled();
-  expect(mockFn).toBeCalledWith('hi there');
-  expect(mockFn).toHaveBeenCalledOnce();
-  expect(mockFn).toBeCalledTimes(1);
+  const result = Math.random();
+  expect(result).toBe(0.5);
 });
