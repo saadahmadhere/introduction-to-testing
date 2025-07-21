@@ -9,7 +9,7 @@ describe('logger', () => {
 
     it('logs to the console in development mode', () => {
       const logSpy = vi.spyOn(console, 'log');
-      console.log('hi');
+      log('hi');
       expect(logSpy).toHaveBeenCalledWith('hi');
     });
 
@@ -18,5 +18,20 @@ describe('logger', () => {
       vi.restoreAllMocks(); // according to the lecture.
     });
   });
-  describe.todo('prod', () => {});
+  describe('production', () => {
+    beforeEach(() => {
+      vi.stubEnv('MODE', 'production');
+    });
+
+    it('shouldnt log to the console in production mode', () => {
+      const logSpy = vi.spyOn(console, 'log');
+      log('hi');
+      expect(logSpy).not.toHaveBeenCalled();
+    });
+
+    afterEach(() => {
+      // vi.unstubAllEnvs();
+      vi.restoreAllMocks(); // according to the lecture.
+    });
+  });
 });
